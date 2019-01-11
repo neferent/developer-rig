@@ -28,7 +28,7 @@ IF NOT ERRORLEVEL 1 (
 	ECHO OpenSSL is already installed.
 	GOTO skip_openssl
 )
-SET OPENSSL_ZIP=openssl-1.0.2p-x64_86-win64.zip
+SET OPENSSL_ZIP=openssl-1.0.2q-x64_86-win64.zip
 CALL :download OpenSSL "https://indy.fulgan.com/SSL/%OPENSSL_ZIP%" "%T%\%OPENSSL_ZIP%"
 IF ERRORLEVEL 1 GOTO done
 powershell -Command "& Expand-Archive -Path '%T%\%OPENSSL_ZIP%' -DestinationPath '%OPENSSL_PATH%'"
