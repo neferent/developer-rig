@@ -277,8 +277,14 @@ module.exports = function(app) {
             // Successfully fetched and unzipped the Zip file.
             try {
               fs.unlinkSync(zip);
-              fs.renameSync(`${exampleFolderName}-master`, exampleFolderName);
-              resolve(exampleFolderPath);
+              fs.access(exampleFolderPath,(err)=>{
+                if(err){
+                  fs.mkdirSync(exampleFolderPath);
+                }
+                fs.renameSync(`${exampleFolderPath}-master`, exampleFolderPath);
+                resolve(exampleFolderPath);
+              })
+
             } catch (ex) {
               handleError(ex);
             }
